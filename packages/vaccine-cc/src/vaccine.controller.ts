@@ -96,7 +96,7 @@ export class VaccineController extends ConvectorController<ChaincodeTx> {
     await vaccinedetail.save();
   }
 
-  @GetAll('Vaccinerecord')
+  @Service()
   @Invokable()
   public async getAllRecords(
     @Param(yup.string())
@@ -120,12 +120,13 @@ export class VaccineController extends ConvectorController<ChaincodeTx> {
     }
   }
 
-  @GetAll('Vaccinedetail')
+  @Service()
   @Invokable()
   public async getAllDetails(
-    @Param(Vaccinerecord)
-    vaccinerecord: Vaccinerecord
+    @Param(yup.string())
+    recordId: string
   ) {
+    const vaccinerecord = await Vaccinerecord.getOne(recordId);
     let detail: Vaccinedetail[];
     for (let detailId in vaccinerecord.vaccineDetails) {
       detail.push(await Vaccinedetail.getOne(detailId))
@@ -133,7 +134,7 @@ export class VaccineController extends ConvectorController<ChaincodeTx> {
     return await detail;
   }
 
-  @GetById('Vaccinerecord')
+  @Service()
   @Invokable()
   public async getRecordById(
     @Param(yup.string())
@@ -163,6 +164,26 @@ export class VaccineController extends ConvectorController<ChaincodeTx> {
         throw new Error(`type ${type} is not one of the Participants`);
     }
     return vaccinerecord;
+  }
+
+  @Service()
+  @Invokable()
+  public async getRecordHistory(
+    @Param(yup.string())
+    id: string
+  ): Promise<History<Vaccinerecord>[]> {
+    let item = await Vaccinerecord.getOne(id);
+    return await item.history();
+  }
+
+  @Service()
+  @Invokable()
+  public async getDetailHistory(
+    @Param(yup.string())
+    id: string
+  ): Promise<History<Vaccinedetail>[]> {
+    let item = await Vaccinedetail.getOne(id);
+    return await item.history();
   }
 
   //////////////////////////

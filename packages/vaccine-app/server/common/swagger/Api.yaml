@@ -1,0 +1,701 @@
+
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: vaccinebc
+  description: vaccinebc REST API Application
+basePath: /api/v1/vaccinebc
+
+tags:
+
+  - name: Doctors
+    description: Simple doctor endpoints
+
+  - name: Familys
+    description: Simple family endpoints
+
+  - name: Healthadmins
+    description: Simple healthadmin endpoints
+
+  - name: Hospitals
+    description: Simple hospital endpoints
+
+  - name: Insurances
+    description: Simple insurance endpoints
+
+  - name: Physicians
+    description: Simple physician endpoints
+
+  - name: Schools
+    description: Simple school endpoints
+
+  - name: Vaccinedetails
+    description: Simple vaccinedetail endpoints
+
+  - name: Vaccinerecords
+    description: Simple vaccinerecord endpoints
+
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+definitions:
+  
+
+    DoctorBody:
+      type: object
+      title: Doctor
+      required:
+         - id
+         - username
+         - hospital
+         - fullname
+         - participantId
+         - status
+      properties:
+        id:
+          type: string
+          example: a_text
+        username:
+          type: string
+          example: a_text
+        hospital:
+          type: string
+          example: a_text
+        fullname:
+          type: string
+          example: a_text
+        participantId:
+          type: string
+          example: a_text
+        status:
+          type: boolean
+          example: true
+
+    FamilyBody:
+      type: object
+      title: Family
+      required:
+         - id
+         - username
+         - fullname
+         - participantId
+         - status
+      properties:
+        id:
+          type: string
+          example: a_text
+        username:
+          type: string
+          example: a_text
+        fullname:
+          type: string
+          example: a_text
+        participantId:
+          type: string
+          example: a_text
+        status:
+          type: boolean
+          example: true
+
+    HealthadminBody:
+      type: object
+      title: Healthadmin
+      required:
+         - id
+         - username
+         - participantId
+         - status
+      properties:
+        id:
+          type: string
+          example: a_text
+        username:
+          type: string
+          example: a_text
+        participantId:
+          type: string
+          example: a_text
+        status:
+          type: boolean
+          example: true
+
+    HospitalBody:
+      type: object
+      title: Hospital
+      required:
+         - id
+         - username
+         - fullname
+         - participantId
+         - status
+      properties:
+        id:
+          type: string
+          example: a_text
+        username:
+          type: string
+          example: a_text
+        fullname:
+          type: string
+          example: a_text
+        participantId:
+          type: string
+          example: a_text
+        status:
+          type: boolean
+          example: true
+
+    InsuranceBody:
+      type: object
+      title: Insurance
+      required:
+         - id
+         - username
+         - fullname
+         - participantId
+         - status
+      properties:
+        id:
+          type: string
+          example: a_text
+        username:
+          type: string
+          example: a_text
+        fullname:
+          type: string
+          example: a_text
+        participantId:
+          type: string
+          example: a_text
+        status:
+          type: boolean
+          example: true
+
+    PhysicianBody:
+      type: object
+      title: Physician
+      required:
+         - id
+         - username
+         - hospital
+         - fullname
+         - participantId
+         - status
+      properties:
+        id:
+          type: string
+          example: a_text
+        username:
+          type: string
+          example: a_text
+        hospital:
+          type: string
+          example: a_text
+        fullname:
+          type: string
+          example: a_text
+        participantId:
+          type: string
+          example: a_text
+        status:
+          type: boolean
+          example: true
+
+    SchoolBody:
+      type: object
+      title: School
+      required:
+         - id
+         - username
+         - fullname
+         - participantId
+         - status
+      properties:
+        id:
+          type: string
+          example: a_text
+        username:
+          type: string
+          example: a_text
+        fullname:
+          type: string
+          example: a_text
+        participantId:
+          type: string
+          example: a_text
+        status:
+          type: boolean
+          example: true
+
+    VaccinedetailBody:
+      type: object
+      title: Vaccinedetail
+      required:
+         - id
+         - vaccineName
+         - childAge
+         - childTemperature
+         - childWeight
+         - childHeight
+         - doc
+         - physician
+         - note
+         - signed
+         - nextVisit
+         - remainingVaccines
+      properties:
+        id:
+          type: string
+          example: a_text
+        vaccineName:
+          type: string
+          example: a_text
+        childAge:
+          type: string
+          example: a_text
+        childTemperature:
+          type: string
+          example: a_text
+        childWeight:
+          type: string
+          example: a_text
+        childHeight:
+          type: string
+          example: a_text
+        doc:
+          type: string
+          example: a_text
+        physician:
+          type: string
+          example: a_text
+        note:
+          type: string
+          example: a_text
+        signed:
+          type: boolean
+          example: true
+        nextVisit:
+          type: string
+          example: a_text
+        remainingVaccines:
+          type: string
+          example: a_text
+
+    VaccinerecordBody:
+      type: object
+      title: Vaccinerecord
+      required:
+         - id
+         - family
+         - childName
+         - childBirthDate
+         - childFileNumber
+         - childGender
+         - hospital
+         - school
+         - insurance
+         - vaccineDetails
+      properties:
+        id:
+          type: string
+          example: a_text
+        family:
+          type: string
+          example: a_text
+        childName:
+          type: string
+          example: a_text
+        childBirthDate:
+          type: string
+          example: a_text
+        childFileNumber:
+          type: string
+          example: a_text
+        childGender:
+          type: string
+          example: a_text
+        hospital:
+          type: string
+          example: a_text
+        school:
+          type: string
+          example: a_text
+        insurance:
+          type: string
+          example: a_text
+        vaccineDetails:
+          type: Array&lt;string&gt;
+          example: {}
+   
+
+    isAuthinticatedBody:
+       type: object
+       title: isAuthinticatedParams
+       required:
+          - username
+          - userId
+          - type
+       properties:
+         username:
+           type: string
+           example: a_text
+         userId:
+           type: string
+           example: a_text
+         type:
+           type: Participants
+           example: {}
+
+    getAllRecordsBody:
+       type: object
+       title: getAllRecordsParams
+       required:
+          - type
+       properties:
+         type:
+           type: Participants
+           example: {}
+
+    getAllDetailsBody:
+       type: object
+       title: getAllDetailsParams
+       required:
+          - recordId
+       properties:
+         recordId:
+           type: string
+           example: a_text
+
+    getRecordByIdBody:
+       type: object
+       title: getRecordByIdParams
+       required:
+          - recordId
+          - type
+       properties:
+         recordId:
+           type: string
+           example: a_text
+         type:
+           type: Participants
+           example: {}
+
+    getRecordHistoryBody:
+       type: object
+       title: getRecordHistoryParams
+       required:
+          - id
+       properties:
+         id:
+           type: string
+           example: a_text
+
+    getDetailHistoryBody:
+       type: object
+       title: getDetailHistoryParams
+       required:
+          - id
+       properties:
+         id:
+           type: string
+           example: a_text
+
+    registerBody:
+       type: object
+       title: registerParams
+       required:
+          - id
+          - type
+          - username
+          - fullname
+          - participantId
+          - hospital
+       properties:
+         id:
+           type: string
+           example: a_text
+         type:
+           type: Participants
+           example: {}
+         username:
+           type: string
+           example: a_text
+         fullname:
+           type: string
+           example: a_text
+         participantId:
+           type: string
+           example: a_text
+         hospital:
+           type: string
+           example: a_text
+
+paths:
+
+
+
+  /doctors/{id}:
+    get:
+      tags:
+        - Doctors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the doctor to retrieve
+          type: string
+      responses:
+        200:
+          description: Return the doctor with the specified id
+        404:
+          description: Doctor not found 
+
+
+  /familys/{id}:
+    get:
+      tags:
+        - Familys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the family to retrieve
+          type: string
+      responses:
+        200:
+          description: Return the family with the specified id
+        404:
+          description: Family not found 
+
+
+
+  /hospitals/{id}:
+    get:
+      tags:
+        - Hospitals
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the hospital to retrieve
+          type: string
+      responses:
+        200:
+          description: Return the hospital with the specified id
+        404:
+          description: Hospital not found 
+
+
+  /insurances/{id}:
+    get:
+      tags:
+        - Insurances
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the insurance to retrieve
+          type: string
+      responses:
+        200:
+          description: Return the insurance with the specified id
+        404:
+          description: Insurance not found 
+
+
+  /physicians/{id}:
+    get:
+      tags:
+        - Physicians
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the physician to retrieve
+          type: string
+      responses:
+        200:
+          description: Return the physician with the specified id
+        404:
+          description: Physician not found 
+
+
+  /schools/{id}:
+    get:
+      tags:
+        - Schools
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the school to retrieve
+          type: string
+      responses:
+        200:
+          description: Return the school with the specified id
+        404:
+          description: School not found 
+
+  /vaccinedetails: 
+    post:
+      tags:
+        - Vaccinedetails
+      description: Create a new vaccinedetail
+      parameters:
+        - name: vaccinedetail
+          in: body
+          description: a vaccinedetail
+          required: true
+          schema:
+            $ref: "#/definitions/VaccinedetailBody"
+      responses:
+        200:
+          description: Successful insertion of vaccinedetails 
+
+
+  /vaccinerecords: 
+    post:
+      tags:
+        - Vaccinerecords
+      description: Create a new vaccinerecord
+      parameters:
+        - name: vaccinerecord
+          in: body
+          description: a vaccinerecord
+          required: true
+          schema:
+            $ref: "#/definitions/VaccinerecordBody"
+      responses:
+        200:
+          description: Successful insertion of vaccinerecords 
+
+
+
+  /isAuthinticated:
+    post:
+      tags:
+        - isAuthinticated
+      description: isAuthinticated
+      parameters:
+        - name: isAuthinticatedParams
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/isAuthinticatedBody"
+      responses:
+        200:
+          description: isAuthinticated executed correctly
+        500:
+          description: isAuthinticated raised an exception
+
+
+  /getAllRecords:
+    post:
+      tags:
+        - getAllRecords
+      description: getAllRecords
+      parameters:
+        - name: getAllRecordsParams
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/getAllRecordsBody"
+      responses:
+        200:
+          description: getAllRecords executed correctly
+        500:
+          description: getAllRecords raised an exception
+
+
+  /getAllDetails:
+    post:
+      tags:
+        - getAllDetails
+      description: getAllDetails
+      parameters:
+        - name: getAllDetailsParams
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/getAllDetailsBody"
+      responses:
+        200:
+          description: getAllDetails executed correctly
+        500:
+          description: getAllDetails raised an exception
+
+
+  /getRecordById:
+    post:
+      tags:
+        - getRecordById
+      description: getRecordById
+      parameters:
+        - name: getRecordByIdParams
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/getRecordByIdBody"
+      responses:
+        200:
+          description: getRecordById executed correctly
+        500:
+          description: getRecordById raised an exception
+
+
+  /getRecordHistory:
+    post:
+      tags:
+        - getRecordHistory
+      description: getRecordHistory
+      parameters:
+        - name: getRecordHistoryParams
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/getRecordHistoryBody"
+      responses:
+        200:
+          description: getRecordHistory executed correctly
+        500:
+          description: getRecordHistory raised an exception
+
+
+  /getDetailHistory:
+    post:
+      tags:
+        - getDetailHistory
+      description: getDetailHistory
+      parameters:
+        - name: getDetailHistoryParams
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/getDetailHistoryBody"
+      responses:
+        200:
+          description: getDetailHistory executed correctly
+        500:
+          description: getDetailHistory raised an exception
+
+
+  /register:
+    post:
+      tags:
+        - register
+      description: register
+      parameters:
+        - name: registerParams
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/registerBody"
+      responses:
+        200:
+          description: register executed correctly
+        500:
+          description: register raised an exception
+
