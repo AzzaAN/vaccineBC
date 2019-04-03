@@ -15,14 +15,14 @@ export namespace SelfGenContext {
     signedCert: string;
   }
 
-  export async function getClient() {
+  export async function getClient(USERCERT) {
     // Check if needed
     let contextPath = '';
     if (process.env.KEYSTORE[0] == '/') {
-       contextPath = join(process.env.KEYSTORE + '/' + process.env.USERCERT);
+       contextPath = join(process.env.KEYSTORE + '/' + USERCERT);
     }
     else {
-       contextPath = join(__dirname, process.env.KEYSTORE + '/' + process.env.USERCERT);
+       contextPath = join(__dirname, process.env.KEYSTORE + '/' + USERCERT);
     }
 
     fs.readFile(contextPath, 'utf8', async function (err, data) {
@@ -60,7 +60,7 @@ export namespace SelfGenContext {
         };
 
         await client.createUser({
-          username: process.env.USERCERT,
+          username: USERCERT,
           mspid: `${process.env.ORGCERT}MSP`,
           cryptoContent: cryptoContentOrgAdmin,
           skipPersistence: false

@@ -25,7 +25,8 @@
     "fabric-client": "^1.4.0",
     "pino": "^5.11.1",
     "swagger-express-middleware": "^2.0.1",
-    "vaccine-cc": "^0.1.0"
+    "vaccine-cc": "^0.1.0",
+    "x509": "^0.3.4"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.26",

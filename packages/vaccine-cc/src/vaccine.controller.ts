@@ -76,14 +76,17 @@ export class VaccineController extends ConvectorController<ChaincodeTx> {
       throw new Error('There is already one Vaccinerecord with that unique id');
     }
 
+    vaccinerecord.id = this.tx.stub.generateUUID("record");
     await vaccinerecord.save();
   }
 
-  @Create('Vaccinedetail')
+  @Service()
   @Invokable()
   public async createDetail(
     @Param(Vaccinedetail)
-    vaccinedetail: Vaccinedetail
+    vaccinedetail: Vaccinedetail,
+    @Param(Vaccinerecord)
+    vaccinerecord: Vaccinerecord
   ) {
 
     this.isAuth(Participants.Hospital);
@@ -93,7 +96,11 @@ export class VaccineController extends ConvectorController<ChaincodeTx> {
       throw new Error('There is already one Vaccinedetail with that unique id');
     }
 
+    vaccinedetail.id = this.tx.stub.generateUUID("detail");
     await vaccinedetail.save();
+
+    vaccinerecord.vaccineDetails.push(vaccinedetail.id);
+    await vaccinerecord.save();
   }
 
   @Service()

@@ -2,9 +2,9 @@
 swagger: "2.0"
 info:
   version: 1.0.0
-  title: vaccinebc
-  description: vaccinebc REST API Application
-basePath: /api/v1/vaccinebc
+  title: vaccineBC
+  description: vaccineBC REST API Application
+basePath: /api/v1/vaccineBC
 
 tags:
 
@@ -349,6 +349,42 @@ definitions:
            type: Participants
            example: {}
 
+    createDetailBody:
+       type: object
+       title: createDetailParams
+       required:
+          - vaccinedetail
+          - vaccinerecord
+       properties:
+         vaccinedetail:
+           type: Vaccinedetail
+           example: {
+id: a_text,
+vaccineName: a_text,
+childAge: a_text,
+childTemperature: a_text,
+childWeight: a_text,
+childHeight: a_text,
+doc: a_text,
+physician: a_text,
+note: a_text,
+signed: a_text,
+nextVisit: a_text,
+remainingVaccines: a_text}
+         vaccinerecord:
+           type: Vaccinerecord
+           example: {
+id: a_text,
+family: a_text,
+childName: a_text,
+childBirthDate: a_text,
+childFileNumber: a_text,
+childGender: a_text,
+hospital: a_text,
+school: a_text,
+insurance: a_text,
+vaccineDetails: a_text}
+
     getAllRecordsBody:
        type: object
        title: getAllRecordsParams
@@ -539,22 +575,6 @@ paths:
         404:
           description: School not found 
 
-  /vaccinedetails: 
-    post:
-      tags:
-        - Vaccinedetails
-      description: Create a new vaccinedetail
-      parameters:
-        - name: vaccinedetail
-          in: body
-          description: a vaccinedetail
-          required: true
-          schema:
-            $ref: "#/definitions/VaccinedetailBody"
-      responses:
-        200:
-          description: Successful insertion of vaccinedetails 
-
 
   /vaccinerecords: 
     post:
@@ -590,6 +610,24 @@ paths:
           description: isAuthinticated executed correctly
         500:
           description: isAuthinticated raised an exception
+
+
+  /createDetail:
+    post:
+      tags:
+        - createDetail
+      description: createDetail
+      parameters:
+        - name: createDetailParams
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/createDetailBody"
+      responses:
+        200:
+          description: createDetail executed correctly
+        500:
+          description: createDetail raised an exception
 
 
   /getAllRecords:

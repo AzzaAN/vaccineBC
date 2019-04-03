@@ -1,5 +1,5 @@
 import { Application } from 'express';
-import vaccinebcRouter from './api/controllers/examples/router'
+import vaccineBCRouter from './api/controllers/examples/router'
 export default function routes(app: Application): void {
-  app.use('/api/v1/vaccinebc', vaccinebcRouter);
+  app.use('/api/v1/vaccineBC', vaccineBCRouter);
 };
