@@ -44,14 +44,18 @@ export class VaccineController extends ConvectorController<ChaincodeTx> {
     console.log(userId);
     console.log(type);
     if (username == "admin") {
-      let healthAdmin = new Healthadmin();
-      healthAdmin.id = this.sender;
-      healthAdmin.username = username;
-      healthAdmin.participantId = userId;
-      healthAdmin.status = true;
+      const existing: any = await Healthadmin.query(Healthadmin, { selector: { username: username, participantId: userId } });
+      if (!existing || !existing.length) {
+        let healthAdmin = new Healthadmin();
+        healthAdmin.id = this.sender;
+        healthAdmin.username = username;
+        healthAdmin.participantId = userId;
+        healthAdmin.status = true;
 
-      console.log(healthAdmin);
-      return await healthAdmin.save();
+        console.log(healthAdmin);
+        await healthAdmin.save();
+      }
+      return Healthadmin;
     }
     const participant: any = this.findParticipant(type, true);
     const existing = await participant.query(participant, { selector: { username: username, participantId: userId } });
@@ -121,6 +125,24 @@ export class VaccineController extends ConvectorController<ChaincodeTx> {
 
       case Participants.School:
         return await Vaccinerecord.query(Vaccinerecord, { selector: { school: this.sender } });
+
+      case Participants.Doctor:
+        {
+          const existing = await Doctor.getOne(this.sender);
+          if (!existing.id) {
+            throw new Error('!existing');
+          }
+          return await Vaccinerecord.query(Vaccinerecord, { selector: { hospital: existing.hospital } });
+        }
+
+      case Participants.Physician:
+        {
+          const existing = await Physician.getOne(this.sender);
+          if (!existing.id) {
+            throw new Error('!existing');
+          }
+          return await Vaccinerecord.query(Vaccinerecord, { selector: { hospital: existing.hospital } });
+        }
 
       default:
         throw new Error(`type ${type} is not one of the Participants`);

@@ -86,13 +86,16 @@ export class Controller {
   async vaccine_isAuthinticated(req: Request, res: Response) {
     console.log(req.body);
     USERCERT = req.body.username;
-    let password = req.body.password;
+    let password = req.body.userId;
     let cntrl = await VaccineControllerClient.init("admin");
+    let user;
     if (USERCERT == "admin")
       if (password == "123") {
         try {
-          await cntrl.isAuthinticated(USERCERT, password, req.body.type);
-          res.sendStatus(200);
+          user = await cntrl.isAuthinticated(USERCERT, password, req.body.type);
+          console.log(user);
+          
+          res.status(200).send(user[0]._type);
         } catch (ex) {
           console.log(ex.message, ex.stack);
           res.status(500).send(ex);
@@ -100,10 +103,10 @@ export class Controller {
       }
       else res.sendStatus(401);
     else {
-
       try {
-        await cntrl.isAuthinticated(USERCERT, password, req.body.type);
-        res.sendStatus(200);
+        user = await cntrl.isAuthinticated(USERCERT, password, req.body.type);
+        console.log(user);
+        res.status(200).send(user[0]._type);
       } catch (ex) {
         console.log(ex.message, ex.stack);
         res.status(500).send(ex);
